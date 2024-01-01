@@ -1,4 +1,3 @@
-let e = require("express");
 let dbConnection = require("../model/model");
 let bcrypt = require("bcrypt");
 let { StatusCodes } = require("http-status-codes");
@@ -76,7 +75,7 @@ async function login(req, res) {
 		});
 		return res
 			.status(StatusCodes.OK)
-			.json({ msg: "user login successful", token });
+			.json({ msg: "user login successful", token,username });
 	} catch (error) {
 		console.log(error.message);
 
@@ -91,14 +90,5 @@ async function checkUser(req, res) {
 	let userid = req.user.userid;
 	res.status(StatusCodes.OK).json({ msg: "valid user", username, userid });
 }
-// function checkUser(req, res) {
-// 	res.send("user checked");
-// }
 
-// function login(req, res) {
-// 	res.send("user logedin");
-// }
-// function checkUser(req, res) {
-// 	res.send("user checked");
-// }
 module.exports = { register, login, checkUser };

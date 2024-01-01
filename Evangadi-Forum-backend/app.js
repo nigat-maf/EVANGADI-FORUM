@@ -1,8 +1,10 @@
 require("dotenv").config();
 let express = require("express");
 let cors = require("cors");
+
 let app = express();
 let port = 5500;
+app.use(cors());
 // json middleware
 app.use(express.json());
 // authentication

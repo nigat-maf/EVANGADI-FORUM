@@ -1,7 +1,14 @@
 let express = require("express");
 let router = express.Router();
-
-router.get("/all-questions",(req, res) => {
-	res.send("all questions");
-});
+let {
+	allQuestions,
+	singleQuestion,
+	questionPost,
+} = require("../controller/questionController");
+// all question rout
+router.get("/all-questions", allQuestions);
+// single question rout
+router.get("/:questionid", singleQuestion);
+// question post route
+router.post("/post-question", questionPost);
 module.exports = router;
