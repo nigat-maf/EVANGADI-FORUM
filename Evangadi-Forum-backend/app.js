@@ -1,10 +1,18 @@
 require("dotenv").config();
 let express = require("express");
 let cors = require("cors");
+let rateLimit = require("express-rate-limit");
 
 let app = express();
 let port = 5500;
 app.use(cors());
+// app.use(
+// 	rateLimit({
+// 		windowMs: 15 * 60 * 1000,
+// 		limit: 100,
+// 	})
+// );
+
 // json middleware
 app.use(express.json());
 // authentication
