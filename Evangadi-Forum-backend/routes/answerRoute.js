@@ -3,5 +3,5 @@ let router = express.Router();
 let { allAnswers, answerPost } = require("../controller/answerController");
 
 router.get("/:questionid", allAnswers);
-router.post("/post-answer", answerPost);
+router.post("/:questionid", answerPost);
 module.exports = router;

@@ -17,7 +17,7 @@ function AskQuestion() {
 		e.preventDefault();
 		let titleValue = titlDom.current.value;
 		let descriptionValue = descriptionDom.current.value;
-		console.log(titleValue, descriptionValue);
+		// console.log(titleValue, descriptionValue);
 		if (!titleValue || !descriptionValue) {
 			alert("all fields required");
 			return;
@@ -38,6 +38,7 @@ function AskQuestion() {
 				}
 			);
 			alert("question posted");
+			navigatTo("/questions")
 		} catch (error) {
 			console.log(error.response);
 		}

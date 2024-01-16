@@ -6,8 +6,9 @@ const { v4: uuidv4 } = require("uuid");
 // answer post controller
 async function answerPost(req, res) {
 	let userid = req.user.userid;
-	let { questionid, answer } = req.body;
-	if (!questionid || !answer) {
+	let questionid = req.params.questionid;
+	let { answer } = req.body;
+	if (!answer) {
 		return res
 			.status(StatusCodes.BAD_REQUEST)
 			.json({ msg: "all filds required" });
