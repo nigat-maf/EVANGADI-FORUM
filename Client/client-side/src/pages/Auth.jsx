@@ -9,12 +9,19 @@ function Auth() {
 	let navigatTo = useNavigate();
 	let [login, setlogin] = useState(true);
 	let [animate, setanimate] = useState(false);
-	function anmate() {
-		let x = setTimeout(() => {
-			setanimate(true);
-		}, 1000);
-		return () => clearTimeout(x);
+
+	async function loginToggle() {
+		setTimeout(
+			() => {
+				setanimate((animate) => !animate);
+			},
+			500,
+
+			setlogin((login) => !login)
+		);
 	}
+
+	let classToggle = animate ? "spin" : "none";
 	let emailNameDom = useRef(null);
 	let passWordDom = useRef(null);
 	let userNameDom = useRef(null);
@@ -48,7 +55,7 @@ function Auth() {
 			localStorage.setItem("token", data.token);
 			// console.log(data);
 			navigatTo("/questions");
-			localStorage.setItem("", data.token);
+			// localStorage.setItem("", data.token);
 		} catch (error) {
 			alert(error.response?.data?.msg);
 			console.log(error.response.data);
@@ -82,6 +89,14 @@ function Auth() {
 				password: passWordValue,
 			});
 			alert("user registered successfully");
+			setTimeout(
+				() => {
+					setanimate((animate) => !animate);
+				},
+				500,
+				setlogin(true)
+			);
+
 			navigatTo("/");
 		} catch (error) {
 			alert("somthing went wrong");
@@ -93,18 +108,8 @@ function Auth() {
 		<>
 			{login ? (
 				<div
-					whileTap={{
-						x: 100,
-						opacity: 0,
-						transitionDelay: 2000,
-						transformStyle: circOut,
-					}}
 					id="login"
-					className={
-						animate
-							? "animate-spin"
-							: "bg-white mt-10 mb-5 ml-20 text-center w-1/3 border rounded-md border-gray-200 scroll-smooth"
-					}
+					className={`animate-${classToggle} bg-white mt-10 mb-5 ml-20 text-center w-1/3 border rounded-md border-gray-200 scroll-smooth`}
 				>
 					<br />
 					<div className="w-full  px-5">
@@ -116,9 +121,7 @@ function Auth() {
 							<span>Don’t have an account? </span>
 
 							<div
-								onClick={() => {
-									setlogin(false);
-								}}
+								onClick={loginToggle}
 								className="text-red-400 hover:cursor-pointer touch-pan-right"
 							>
 								Create a new account
@@ -196,12 +199,12 @@ function Auth() {
 								>
 									Sign In
 								</button>
-								<a
-									className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
-									href="#"
+								<button
+									onClick={loginToggle}
+									className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
 								>
-									Forgot Password?
-								</a>
+									Sign Up
+								</button>
 							</div>
 						</form>
 					</div>
@@ -303,22 +306,19 @@ function Auth() {
 							</p>
 						</div>
 
-						<div className=" items-center text-center ">
+						<div className=" flex items-center text-center justify-between ">
 							<button
 								className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
 								type="submit"
 							>
 								Register
 							</button>
-						</div>
-
-						<div
-							onClick={() => {
-								setlogin(true);
-							}}
-							className="pt-3 text-xsm text-center italic text-green-500 hover:cursor-pointer"
-						>
-							I have account
+							<button
+								onClick={loginToggle}
+								className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+							>
+								I have account
+							</button>
 						</div>
 					</form>
 				</div>
