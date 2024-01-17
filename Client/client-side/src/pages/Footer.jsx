@@ -72,7 +72,7 @@ function Footer() {
 					<br />
 					<p>Nigat Gest</p>
 					<p>nigatam2023.com</p>
-					<p>phone</p>
+					<p>7202701879</p>
 				</div>
 			</div>
 		</>

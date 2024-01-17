@@ -13,6 +13,7 @@ function HomePage() {
 				headers: { Authorization: "Bearer " + token },
 			});
 			setQuestionList(data.questions);
+
 			// console.log(data);
 		} catch (error) {
 			console.log(error.response);
@@ -50,10 +51,7 @@ function HomePage() {
 				{questionList?.map((single, i) => {
 					let y = (
 						<>
-							<Link
-								to={`/questions/${single.questionid}`}
-								
-							>
+							<Link to={`/questions/${single.questionid}`}>
 								<div key={i} className="flex justify-around max-h-50  py-6">
 									<div className=" pb-5">
 										<svg
