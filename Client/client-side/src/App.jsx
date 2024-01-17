@@ -32,7 +32,7 @@ function App() {
 	}
 	useEffect(() => {
 		checkUser();
-	});
+	},[]);
 
 	return (
 		<appcontext.Provider value={{ user, setuser }}>
